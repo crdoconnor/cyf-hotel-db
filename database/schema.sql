@@ -1,3 +1,5 @@
+PRAGMA foreign_keys = ON;
+
 CREATE TABLE IF NOT EXISTS customers (
   ID INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT(16),
