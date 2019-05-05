@@ -2,17 +2,20 @@ const express = require('express');
 
 const router = express.Router();
 
-const filename = 'database/database.sqlite';
-const sqlite3 = require('sqlite3').verbose();
-let db = new sqlite3.Database(filename);
-// db.run("PRAGMA foreign_keys = ON");
+const pg = require('pg');
+const client = new pg.Client({
+  user: 'postgres',
+  database: 'hotel'
+});
+
+client.connect();
 
 router.get('/customers', function(req, res) {
   var sql = 'select * from customers';
 
-  db.all(sql, [], (err, rows ) => {
+  client.query(sql, [], (err, result) => {
     res.status(200).json({
-      customers: rows
+      customers: result.rows
     });
   });
 });

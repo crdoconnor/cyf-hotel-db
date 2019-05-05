@@ -4,7 +4,7 @@
 
 This exercise involves implementing various aspects of a hotel booking system. It involves a variety of operations on the database to fetch, insert and update data.
 
-The tasks build on your previous experience using SQL with SQLite and Node.js. The key components of the application are as follows:
+The tasks build on your previous experience using SQL with Postgres and Node.js. The key components of the application are as follows:
 
 * `index.js` - sets up the application for use
 * `server/class2.js` - router for simple application logic and interaction with the database;

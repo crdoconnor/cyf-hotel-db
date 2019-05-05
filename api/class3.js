@@ -1,8 +1,10 @@
 const express = require('express');
-const sqlite3 = require( 'sqlite3' ).verbose();
+const pg = require('pg');
 
-const filename = 'database/database.sqlite';
-let db = new sqlite3.Database(filename);
+const client = new pg.Client({
+  user: 'postgres',
+  database: 'hotel'
+});
 
 const router = express.Router();
 
@@ -13,9 +15,9 @@ router.delete('/reservations/:id/', function(req, res) {
   const id = req.params.id;
   const sql = 'delete from reservations where id = ' + id;
 
-  db.run(sql, (err, rows) => {
+  client.query(sql, (err, result) => {
     res.status(200).json({
-      customers: rows
+      customers: result.rows
     });
   });
 });
