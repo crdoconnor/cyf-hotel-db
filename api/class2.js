@@ -4,8 +4,9 @@ const router = express.Router();
 
 const pg = require('pg');
 const client = new pg.Client({
-  user: 'postgres',
-  database: 'hotel'
+  user: 'hotelappuser',
+  database: 'hotel',
+  password: 'password'
 });
 
 client.connect();
