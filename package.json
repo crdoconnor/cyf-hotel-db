@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch database/schema.sql index.js",
     "generate-data": "node assets/data/generate.js",
     "db-reset": "node db-reset.js"
   },
