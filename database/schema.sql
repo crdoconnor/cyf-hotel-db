@@ -1,6 +1,9 @@
 drop database if exists hotel;
+drop user if exists hotelappuser;
 
 create database hotel;
+create user hotelappuser with password 'password';
+grant all privileges on database hotel to hotelappuser;
 
 \connect hotel;
 
