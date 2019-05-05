@@ -59,13 +59,13 @@ IF NOT EXISTS rooms
   foreign key(room_type_id) references room_types(id)
 );
 
-INSERT INTO rooms (room_type_id, seaview) VALUES (1, 0);
-INSERT INTO rooms (room_type_id, seaview) VALUES (2, 0);
-INSERT INTO rooms (room_type_id, seaview) VALUES (2, 1);
-INSERT INTO rooms (room_type_id, seaview) VALUES (1, 1);
-INSERT INTO rooms (room_type_id, seaview) VALUES (2, 0);
-INSERT INTO rooms (room_type_id, seaview) VALUES (2, 1);
-INSERT INTO rooms (room_type_id, seaview) VALUES (1, 1);
+INSERT INTO rooms (room_type_id, seaview) VALUES (1, false);
+INSERT INTO rooms (room_type_id, seaview) VALUES (2, false);
+INSERT INTO rooms (room_type_id, seaview) VALUES (2, true);
+INSERT INTO rooms (room_type_id, seaview) VALUES (1, true);
+INSERT INTO rooms (room_type_id, seaview) VALUES (2, false);
+INSERT INTO rooms (room_type_id, seaview) VALUES (2, true);
+INSERT INTO rooms (room_type_id, seaview) VALUES (1, true);
 
 
 select * from rooms;
@@ -103,15 +103,13 @@ create table IF NOT EXISTS invoices (
       foreign key (reservation_id) references reservations (id)
   );
 
-INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (1, 700, 50, '2018/05/01',1);
-INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (2, 1000, 550, '2018/06/08',0);
-INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (3, 200, 50, '2018/03/25',1);
-INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (4, 7700, 50, '2018/08/07',1);
-INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (5, 600, 50, '2018/04/14',0);
+INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (1, 700, 50, '2018/05/01',true);
+INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (2, 1000, 550, '2018/06/08',false);
+INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (3, 200, 50, '2018/03/25',true);
+INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (4, 7700, 50, '2018/08/07',true);
+INSERT INTO invoices (reservation_id, total, surcharges, invoice_date_time, paid) VALUES (5, 600, 50, '2018/04/14',false);
 
 select * from invoices;
-
-DROP table IF EXISTS reviews;
 
 create table IF NOT EXISTS reviews (
     id serial primary key,
@@ -119,13 +117,13 @@ create table IF NOT EXISTS reviews (
     room_type_id integer not null,
     rating   integer,
     comment text,
-    review_date   datetime,
+    review_date   timestamp,
     foreign key
     (customer_id) references customers (id),
     foreign key (room_type_id) references room_types (id)
 );
-  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (1, 2, 4, "Great room and beautiful hotel", '2018/05/01');
-  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (2, 3, 3, "Beautiful hotel", '2018/05/01');
-  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (4, 1, 5, "Wonderful service", '2018/05/01');
-  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (3, 1, 4, "Great hotel", '2018/05/01');
+  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (1, 2, 4, 'Great room and beautiful hotel', '2018/05/01');
+  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (2, 3, 3, 'Beautiful hotel', '2018/05/01');
+  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (4, 1, 5, 'Wonderful service', '2018/05/01');
+  INSERT into reviews (customer_id, room_type_id, rating, comment, review_date) VALUES (3, 1, 4, 'Great hotel', '2018/05/01');
   select * from reviews;
